@@ -46,15 +46,20 @@
   loop_control:
     loop_var: lamp_item
 
-- name: Redirect http requests to https.
+- name: Redirect http requests to https and set ServerName for Apache.
   ansible.builtin.template:
-    src: "{{ role_path }}/templates/ssl_redirect.conf.j2"
-    dest: "/etc/httpd/conf.d/ssl_redirect.conf"
+    src: "{{ role_path }}/templates/{{ lamp_item }}.j2"
+    dest: "/etc/httpd/conf.d/{{ lamp_item }}"
     owner: root
     group: root
     mode: "u=rw,g=r,o=r"
   become: true
   notify: Reload httpd.
+  loop:
+    - ssl_redirect.conf
+    - servername.conf
+  loop_control:
+    loop_var: lamp_item
 
 - name: Run MariaDB secure installation.
   ansible.builtin.expect:
@@ -70,6 +75,7 @@
       'Remove test database': 'y'
       'Reload privilege tables now': 'y'
   become: true
+  when: not ansible_check_mode
 
 - name: Set timezone for php.
   ansible.builtin.template:
