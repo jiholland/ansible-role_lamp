@@ -1,0 +1,46 @@
+---
+# Argument specification file for lamp
+
+argument_specs:
+  main:
+    options:
+
+      lamp_selinux_state:
+        description: "Ensure SElinux is either enforcing or permissive."
+        type: str
+        choices:
+          - enforcing
+          - permissive
+
+      lamp_packages:
+        description: "Packages that will be installed."
+        type: list
+        default:
+          - firewalld
+          - httpd
+          - mariadb-server
+          - mod_ssl
+          - php
+          - python3-pexpect
+
+      lamp_services:
+        description: "Services that will be enabled and started."
+        type: list
+        default:
+          - firewalld
+          - httpd
+          - mariadb
+
+      lamp_fqdn:
+        description: "The FQDN that will be used to redirect SSL."
+        type: str
+        required: true
+
+      lamp_mysql_root_password:
+        description: "The mysql root password."
+        type: str
+        required: true
+
+      lamp_php_timezone:
+        description: "Set timezone for php."
+        type: str
