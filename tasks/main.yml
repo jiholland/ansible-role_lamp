@@ -1,0 +1,81 @@
+---
+# tasks file for lamp
+
+- name: Ensure SELinux.
+  ansible.posix.selinux:
+    policy: targeted
+    state: "{{ lamp_selinux_state }}"
+  become: true
+
+- name: Install packages.
+  ansible.builtin.dnf:
+    name: "{{ lamp_packages }}"
+    state: present
+  become: true
+
+- name: Start and enable services.
+  ansible.builtin.systemd_service:
+    name: "{{ lamp_item }}"
+    enabled: true
+    state: started
+  become: true
+  loop: "{{ lamp_services }}"
+  loop_control:
+    loop_var: lamp_item
+
+- name: Set permission and ownership to /var/www/html directory.
+  ansible.builtin.file:
+    path: "/var/www/html"
+    owner: apache
+    group: apache
+    mode: "u=rwx,g=rx,o="
+    recurse: true
+    state: directory
+  become: true
+
+- name: Allow http and https in firewalld.
+  ansible.posix.firewalld:
+    service: "{{ lamp_item }}"
+    permanent: true
+    immediate: true
+    state: enabled
+  become: true
+  loop:
+    - http
+    - https
+  loop_control:
+    loop_var: lamp_item
+
+- name: Redirect http requests to https.
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/ssl_redirect.conf.j2"
+    dest: "/etc/httpd/conf.d/ssl_redirect.conf"
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  become: true
+  notify: Reload httpd.
+
+- name: Run MariaDB secure installation.
+  ansible.builtin.expect:
+    command: "mysql_secure_installation"
+    responses:
+      'Enter current password for root': ''
+      'Switch to unix_socket authentication': 'n'
+      'Change the root password': 'y'
+      'New password': '{{ lamp_mysql_root_password }}'
+      'Re-enter new password': '{{ lamp_mysql_root_password }}'
+      'Remove anonymous users': 'y'
+      'Disallow root login remotely': 'y'
+      'Remove test database': 'y'
+      'Reload privilege tables now': 'y'
+  become: true
+
+- name: Set timezone for php.
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/10-timezone.ini.j2"
+    dest: "/etc/php.d/10-timezone.ini"
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  become: true

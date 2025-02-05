@@ -1,0 +1,4 @@
+<VirtualHost *:80>
+    ServerName {{ lamp_fqdn }}
+    Redirect permanent / https://{{ lamp_fqdn }}
+</VirtualHost>

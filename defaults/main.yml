@@ -1,0 +1,21 @@
+---
+# defaults file for lamp
+
+lamp_selinux_state: enforcing
+
+lamp_packages:
+  - firewalld
+  - httpd
+  - mariadb-server
+  - mod_ssl
+  - php
+  - python3-pexpect
+
+lamp_services:
+  - firewalld
+  - httpd
+  - mariadb
+
+# lamp_fqdn: "zabbix.example.com"
+# lamp_mysql_root_password: "Password123"
+lamp_php_timezone: "Europe/Oslo"
