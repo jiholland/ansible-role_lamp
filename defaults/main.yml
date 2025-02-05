@@ -10,6 +10,7 @@ lamp_packages:
   - mod_ssl
   - php
   - python3-pexpect
+  - systemd
 
 lamp_services:
   - firewalld
@@ -17,5 +18,5 @@ lamp_services:
   - mariadb
 
 # lamp_fqdn: "zabbix.example.com"
-# lamp_mysql_root_password: "Password123"
+# lamp_mariadb_root_password: "Password123"
 lamp_php_timezone: "Europe/Oslo"

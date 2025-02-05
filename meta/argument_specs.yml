@@ -22,6 +22,7 @@ argument_specs:
           - mod_ssl
           - php
           - python3-pexpect
+          - systemd
 
       lamp_services:
         description: "Services that will be enabled and started."
@@ -32,11 +33,11 @@ argument_specs:
           - mariadb
 
       lamp_fqdn:
-        description: "The FQDN that will be used to redirect SSL."
+        description: "The FQDN that will be used to redirect http requests to https."
         type: str
         required: true
 
-      lamp_mysql_root_password:
+      lamp_mariadb_root_password:
         description: "The mysql root password."
         type: str
         required: true
