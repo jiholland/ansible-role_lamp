@@ -15,7 +15,7 @@ Role Variables
 - lamp_packages
 - lamp_services
 - lamp_fqdn
-- lamp_mysql_root_password
+- lamp_mariadb_root_password
 - lamp_php_timezone
 
 Dependencies
