@@ -15,22 +15,10 @@ argument_specs:
       lamp_packages:
         description: "Packages that will be installed."
         type: list
-        default:
-          - firewalld
-          - httpd
-          - mariadb-server
-          - mod_ssl
-          - php
-          - python3-pexpect
-          - systemd
 
       lamp_services:
         description: "Services that will be enabled and started."
         type: list
-        default:
-          - firewalld
-          - httpd
-          - mariadb
 
       lamp_fqdn:
         description: "The FQDN that will be used to redirect http requests to https."
