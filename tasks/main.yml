@@ -28,7 +28,7 @@
     path: "/var/www/html"
     owner: apache
     group: apache
-    mode: "u=rwx,g=rx,o="
+    mode: u=rwx,g=rx,o=
     recurse: true
     state: directory
   become: true
@@ -52,7 +52,7 @@
     dest: "/etc/httpd/conf.d/{{ lamp_item }}"
     owner: root
     group: root
-    mode: "u=rw,g=r,o=r"
+    mode: u=rw,g=r,o=r
   become: true
   notify: Reload httpd.
   loop:
@@ -83,5 +83,5 @@
     dest: "/etc/php.d/10-timezone.ini"
     owner: root
     group: root
-    mode: "u=rw,g=r,o=r"
+    mode: u=rw,g=r,o=r
   become: true

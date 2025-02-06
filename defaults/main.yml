@@ -10,7 +10,6 @@ lamp_packages:
   - mod_ssl
   - php
   - python3-pexpect
-  - systemd
 
 lamp_services:
   - firewalld
