@@ -6,7 +6,7 @@ argument_specs:
     options:
 
       lamp_selinux_state:
-        description: "Ensure SElinux is either enforcing or permissive."
+        description: "Ensure SELinux is either enforcing or permissive."
         type: str
         choices:
           - enforcing
@@ -26,10 +26,10 @@ argument_specs:
         required: true
 
       lamp_mariadb_root_password:
-        description: "The mysql root password."
+        description: "The MariaDB root password."
         type: str
         required: true
 
       lamp_php_timezone:
-        description: "Set timezone for php."
+        description: "Set timezone for PHP."
         type: str
