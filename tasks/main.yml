@@ -28,7 +28,7 @@
     path: "/var/www/html"
     owner: apache
     group: apache
-    mode: u=rwx,g=rx,o=
+    mode: u=rwX,g=rX,o=rX
     recurse: true
     state: directory
   become: true
@@ -77,11 +77,13 @@
   become: true
   when: not ansible_check_mode
 
-- name: Set timezone for php.
-  ansible.builtin.template:
-    src: "{{ role_path }}/templates/10-timezone.ini.j2"
-    dest: "/etc/php.d/10-timezone.ini"
+- name: Set timezone for PHP.
+  ansible.builtin.lineinfile:
+    path: "/etc/php.ini"
+    regexp: "date.timezone ="
+    line: "date.timezone = {{ lamp_php_timezone }}"
     owner: root
     group: root
     mode: u=rw,g=r,o=r
+    state: present
   become: true

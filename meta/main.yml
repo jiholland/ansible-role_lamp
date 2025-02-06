@@ -3,7 +3,7 @@ galaxy_info:
   role_name: lamp
   namespace: jiholland
   author: Jørn Ivar Holland
-  description: "Install and configure Apache, MariaDB and PHP with basic security features enabled."
+  description: "Provision Apache, MariaDB and PHP with SSL redirect, SELinux and firewalld enabled."
   license: BSD-3-Clause
   min_ansible_version: "2.16"
   platforms:
