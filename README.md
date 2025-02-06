@@ -1,7 +1,7 @@
 jiholland.lamp
 ==============
 
-Install and configure Apache, MariaDB and PHP with basic security features enabled.
+Provision Apache, MariaDB and PHP with SSL redirect, SELinux and firewalld enabled.
 
 Requirements
 ------------
