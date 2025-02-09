@@ -53,6 +53,7 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
+    backup: true
   become: true
   notify: Reload httpd.
   loop:
@@ -86,4 +87,5 @@
     group: root
     mode: u=rw,g=r,o=r
     state: present
+    backup: true
   become: true
