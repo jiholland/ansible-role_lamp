@@ -78,6 +78,17 @@
   become: true
   when: not ansible_check_mode
 
+- name: Set innodb buffer pool size for MariaDB.
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/mariadb_buffer.cnf.j2"
+    dest: "/etc/my.cnf.d/mariadb_buffer.cnf"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+    backup: true
+  become: true
+  notify: Restart MariaDB.
+
 - name: Set timezone for PHP.
   ansible.builtin.lineinfile:
     path: "/etc/php.ini"

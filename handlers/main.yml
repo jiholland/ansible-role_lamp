@@ -6,3 +6,9 @@
     name: httpd
     state: reloaded
   become: true
+
+- name: Restart MariaDB.
+  ansible.builtin.systemd_service:
+    name: mariadb
+    state: restarted
+  become: true
