@@ -18,4 +18,5 @@ lamp_services:
 
 # lamp_fqdn: "zabbix.example.com"
 # lamp_mariadb_root_password: "Password123"
+lamp_mariadb_buffer_pool_size: "2GB"
 lamp_php_timezone: "Europe/Oslo"
