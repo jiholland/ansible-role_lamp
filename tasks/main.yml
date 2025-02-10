@@ -7,6 +7,16 @@
     state: "{{ lamp_selinux_state }}"
   become: true
 
+- name: Set locale encoding.
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/environment.j2"
+    dest: "/etc/environment"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+    backup: true
+  become: true
+
 - name: Install packages.
   ansible.builtin.dnf:
     name: "{{ lamp_packages }}"
@@ -78,10 +88,10 @@
   become: true
   when: not ansible_check_mode
 
-- name: Set innodb buffer pool size for MariaDB.
+- name: Set innodb buffer pool size and disable name resolve for MariaDB.
   ansible.builtin.template:
-    src: "{{ role_path }}/templates/mariadb_buffer.cnf.j2"
-    dest: "/etc/my.cnf.d/mariadb_buffer.cnf"
+    src: "{{ role_path }}/templates/mariadb_tuning.cnf.j2"
+    dest: "/etc/my.cnf.d/mariadb_tuning.cnf"
     owner: root
     group: root
     mode: u=rw,g=r,o=r

@@ -12,11 +12,12 @@ Role Variables
 --------------
 
 - lamp_selinux_state
+- lamp_locale
 - lamp_packages
 - lamp_services
 - lamp_fqdn
 - lamp_mariadb_root_password
-- lamp_mariadb_buffer_pool_size
+- lamp_innodb_buffer_pool_size
 - lamp_php_timezone
 
 Dependencies
