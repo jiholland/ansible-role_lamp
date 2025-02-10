@@ -2,7 +2,7 @@
 # defaults file for lamp
 
 lamp_selinux_state: enforcing
-lamp_locale: "en_US.utf-8"
+lamp_locale: "en_US.UTF-8"
 
 lamp_packages:
   - firewalld
