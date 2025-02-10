@@ -2,6 +2,7 @@
 # defaults file for lamp
 
 lamp_selinux_state: enforcing
+lamp_locale: "en_US.utf-8"
 
 lamp_packages:
   - firewalld
@@ -18,5 +19,5 @@ lamp_services:
 
 # lamp_fqdn: "zabbix.example.com"
 # lamp_mariadb_root_password: "Password123"
-lamp_mariadb_buffer_pool_size: "2GB"
-lamp_php_timezone: "Europe/Oslo"
+# lamp_innodb_buffer_pool_size: "2GB"
+# lamp_php_timezone: "Europe/Oslo"
