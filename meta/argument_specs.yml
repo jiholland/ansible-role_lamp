@@ -5,41 +5,22 @@ argument_specs:
   main:
     options:
 
-      lamp_selinux_state:
-        description: "Ensure SELinux is either enforcing or permissive."
-        type: str
-        choices:
-          - enforcing
-          - permissive
-
-      lamp_locale:
-        description: "Set locale encoding."
-        type: str
-
-      lamp_packages:
-        description: "Packages that will be installed."
-        type: list
-
-      lamp_services:
-        description: "Services that will be enabled and started."
-        type: list
-
       lamp_fqdn:
-        description: "The FQDN that will be used to redirect http requests to https."
+        description: "The FQDN that will be used as ServerName for Apache and redirection of http requests to https."
         type: str
         required: true
 
-      lamp_mariadb_root_password:
+      lamp_db_root_password:
         description: "The MariaDB root password."
         type: str
         required: true
 
-      lamp_innodb_buffer_pool_size:
-        description: "Use 70-80% of RAM."
+      lamp_db_buffer_pool_size:
+        description: "Innodb buffer pool size for MariaDB. Use 80% of RAM."
         type: str
         required: true
 
       lamp_php_timezone:
-        description: "Set timezone for PHP."
+        description: "Timezone for PHP."
         type: str
         required: true
