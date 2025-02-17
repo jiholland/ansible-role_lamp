@@ -7,9 +7,10 @@ lamp_locale: "en_US.UTF-8"
 lamp_packages:
   - firewalld
   - httpd
-  - mariadb-server
   - mod_ssl
+  - mariadb-server
   - php
+  # Required by Ansible
   - python3-pexpect
 
 lamp_services:
@@ -18,6 +19,6 @@ lamp_services:
   - mariadb
 
 # lamp_fqdn: "zabbix.example.com"
-# lamp_mariadb_root_password: "Password123"
-# lamp_innodb_buffer_pool_size: "2GB"
+# lamp_db_root_password: "Password123"
+# lamp_db_buffer_pool_size: "2GB"
 # lamp_php_timezone: "Europe/Oslo"
