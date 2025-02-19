@@ -56,7 +56,7 @@
   loop_control:
     loop_var: lamp_item
 
-- name: Redirect http requests to https and set ServerName for Apache.
+- name: Redirect http requests to https and configure Server settings for Apache.
   ansible.builtin.template:
     src: "{{ role_path }}/templates/{{ lamp_item }}.j2"
     dest: "/etc/httpd/conf.d/{{ lamp_item }}"
@@ -68,7 +68,7 @@
   notify: Reload httpd.
   loop:
     - ssl_redirect.conf
-    - servername.conf
+    - server.conf
   loop_control:
     loop_var: lamp_item
 
